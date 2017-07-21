@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event Timer - Countdown</title>
+  <meta name="keywords" content="event,timer,countdown">
+  <meta name="description" content="This is a very simple application for visual display and highlighting the events (time) countdown for speakers.">
+  <meta name="author" content="Martin Hlaváč">
+  <meta property="og:title" content="Event Timer - Countdown">
+  <meta property="og:image" content="images/icon.png">
+  <meta property="og:description" content="This is a very simple application for visual display and highlighting the events (time) countdown for speakers.">
+  <link rel="icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+
+  <section id="hero-section" class="hero is-fullheight is-dark is-bold">
+    <div class="hero-head">
+      <div class="container is-fluid">
+        <nav class="nav has-shadow">
+          <div class="nav-left">
+            <span class="nav-item">
+              Elapsed time:&nbsp;<span id="stopwatch">00:00:00</span>
+            </span>
+          </div>
+
+          <span class="nav-toggle">
+            <span></span>
+          <span></span>
+          <span></span>
+          </span>
+
+          <div class="nav-right nav-menu">
+            <div class="nav-item">
+              <div class="field is-grouped">
+                <p class="control">
+                  <button id="start-button" class="button is-success"><span>Start</span></button>
+                </p>
+                <p class="control">
+                  <button id="stop-button" class="button is-light" disabled><span>Stop</span></button>
+                </p>
+                <p class="control">
+                  <button id="reset-button" class="button is-dark" disabled><span>Reset</span></button>
+                </p>
+                <p class="control">
+                  <button id="settings-button" class="button is-info modal-button" data-target="#settings-modal"><span>Settings</span></button>
+                </p>
+                <p class="control">
+                  <button id="credits-button" class="button is-info modal-button" data-target="#credits-modal"><span>Credits</span></button>
+                </p>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="hero-body">
+      <div class="container is-fluid has-text-centered">
+        <span id="countdown">00:00:00</span>
+      </div>
+    </div>
+
+  </section>
+
+  <div id="settings-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Settings</p>
+        <button class="delete close-modal"></button>
+      </header>
+      <section class="modal-card-body">
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Countdown:</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control has-icons-right">
+                <input id="countdown-hours-field" name="countdown-hours" type="number" min="0" max="23" placeholder="00" class="input" required>
+                <span class="icon is-normal is-right">HH</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label"></label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control has-icons-right">
+                <input id="countdown-minutes-field" name="countdown-hours" type="number" min="0" max="59" placeholder="00" class="input"
+                  required>
+                <span class="icon is-normal is-right">MM</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label"></label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control has-icons-right">
+                <input id="countdown-seconds-field" name="countdown-seconds" type="number" min="0" max="59" placeholder="00" class="input"
+                  required>
+                <span class="icon is-normal is-right">SS</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Warning at:</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control has-icons-right">
+                <input id="warning-field" name="warning" type="number" min="0" max="100" placeholder="00" class="input" required>
+                <span class="icon is-normal is-right">%</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Pulse at:</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control has-icons-right">
+                <input id="pulse-field" name="pulse" type="number" min="0" max="100" placeholder="00" class="input" required>
+                <span class="icon is-normal is-right">%</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
+
+  <div id="credits-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Credits</p>
+        <button class="delete close-modal"></button>
+      </header>
+      <section class="modal-card-body">
+        <div class="content">
+          <p>This is a very simple application for visual display and highlighting the events (time) countdown for speakers.</p>
+          <p>Copyright &copy; <a href="http://hlavacm.net" target="_blank">Martin Hlaváč</a> 2017</p>
+        </div>
+        <div class="content is-small">
+          <p>Used:</p>
+          <ul>
+            <li><a href="http://bulma.io" title="A modern CSS framework based on Flexbox" target="_blank">Bulma</a></li>
+            <li><a href="https://fonts.google.com/specimen/Roboto+Condensed" title="Roboto Condensed - Google Fonts" target="_blank">Roboto Condesed</a></li>
+            <li><a href="https://jquery.com" title="jQuery is a fast, small, and feature-rich JavaScript library" target="_blank">jQuery</a></li>
+            <li><a href="https://github.com/jylauril/jquery-runner" title="Runner/stopwatch jQuery plugin" target="_blank">jQuery.runner</a></li>
+            <li><a href="https://github.com/js-cookie/js-cookie" title="Lightweight JS API for handling cookies" target="_blank">js-cookie</a></li>
+            <li>
+              <a href="https://www.iconfinder.com/icons/1756803/clock_countdown_new_time_twelve_year_icon" title="clock_countdown_new_time_twelve_year_icon"
+                target="_blank">clock countdown icon
+                </a>
+            </li>
+            <li><a href="https://www.npmjs.com" title="The JavaScript Package Manager" target="_blank">npm</a></li>
+            <li><a href="https://gruntjs.com" title="The JavaScript Task Runner" target="_blank">grunt</a></li>
+            <li><a href="https://pages.github.com" title="Websites for you and your projects" target="_blank">GitHub Pages</a></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+#countdown {
+  font-size: 25vw;
+}
+
+#countdownExpired {
+  font-size: 10vw;
+}
