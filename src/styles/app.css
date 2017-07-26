@@ -9,3 +9,7 @@ body {
 #countdownExpired {
   font-size: 10vw;
 }
+
+.modal-card-foot {
+  justify-content: space-between;
+}

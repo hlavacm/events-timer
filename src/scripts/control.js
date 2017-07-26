@@ -38,6 +38,9 @@ stopButton.click(function () {
 });
 
 resetButton.click(function () {
+  if (!confirm("Reset cancels countdown and restores default state. Do you really want to confirm it?")) {
+    return;
+  }
   resetState();
 });
 
@@ -45,11 +48,13 @@ $(".modal-button").click(function () {
   $($(this).data("target")).addClass("is-active");
 });
 
-$(".close-modal,.modal-background").click(function () {
-  if ($("#settings-modal").hasClass("is-active")) {
-    updateSettings();
-  }
-  $(this).parents("div.modal").removeClass("is-active");
+$(".close-modal,.modal-background,.close-modal-button").click(function () {
+  closeModal($(this));
+});
+
+$("#save-settings-button").click(function () {
+  updateSettings();
+  closeModal($(this));
 });
 
 function resetState() {
@@ -66,9 +71,13 @@ function resetState() {
   setDefaults();
 }
 
+function closeModal(element) {
+  element.parents("div.modal").removeClass("is-active");
+}
+
 function updateSettings() {
-  if (countdown.runner("info").running) {
-    if (!confirm("Settings update will reset. Do you want to continue?")) {
+  if (resetButton.prop("disabled") == false) {
+    if (!confirm("Apply will do reset. Do you really want to confirm it?")) {
       return;
     }
   }

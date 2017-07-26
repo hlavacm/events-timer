@@ -1,10 +1,10 @@
 {
   "name": "events-timer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Martin Hlaváč",
-  "description": "This is a very simple application for visual display and highlighting the events (time) countdown for speakers.",
+  "description": "This is a simple countdown application with two time dependent notifications. The main use is for speakers at events and conferences ...",
   "dependencies": {
-    "bulma": "^0.4.3",
+    "bulma": "^0.4.4",
     "jquery": "^3.2.1",
     "jquery.runner": "^2.3.0",
     "js-cookie": "^2.1.4"

@@ -7,11 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Event Timer - Countdown</title>
   <meta name="keywords" content="event,timer,countdown">
-  <meta name="description" content="This is a very simple application for visual display and highlighting the events (time) countdown for speakers.">
+  <meta name="description" content="This is a simple countdown application with two time dependent notifications. The main use is for speakers at events and conferences ...">
   <meta name="author" content="Martin Hlaváč">
   <meta property="og:title" content="Event Timer - Countdown">
   <meta property="og:image" content="images/icon.png">
-  <meta property="og:description" content="This is a very simple application for visual display and highlighting the events (time) countdown for speakers.">
+  <meta property="og:description" content="This is a simple countdown application with two time dependent notifications. The main use is for speakers at events and conferences ...">
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
   <link rel="stylesheet" type="text/css" href="styles.css">
@@ -51,7 +51,7 @@
                   <button id="settings-button" class="button is-info modal-button" data-target="#settings-modal"><span>Settings</span></button>
                 </p>
                 <p class="control">
-                  <button id="credits-button" class="button is-info modal-button" data-target="#credits-modal"><span>Credits</span></button>
+                  <button id="credits-button" class="button is-primary modal-button" data-target="#credits-modal"><span>Credits</span></button>
                 </p>
               </div>
             </div>
@@ -150,6 +150,10 @@
         </div>
 
       </section>
+      <footer class="modal-card-foot">
+        <a id="save-settings-button" class="button is-success">Apply</a>
+        <a class="button close-modal-button">Close</a>
+      </footer>
     </div>
   </div>
 
@@ -162,7 +166,8 @@
       </header>
       <section class="modal-card-body">
         <div class="content">
-          <p>This is a very simple application for visual display and highlighting the events (time) countdown for speakers.</p>
+          <p>This is a simple countdown application with two time dependent notifications. The main use is for speakers at events
+            and conferences ...</p>
           <p>Copyright &copy; <a href="http://hlavacm.net" target="_blank">Martin Hlaváč</a> 2017</p>
         </div>
         <div class="content is-small">
@@ -184,6 +189,9 @@
           </ul>
         </div>
       </section>
+      <footer class="modal-card-foot">
+        <a class="button close-modal-button">OK</a>
+      </footer>
     </div>
   </div>
 
