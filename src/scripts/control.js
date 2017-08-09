@@ -16,25 +16,11 @@ var stopButton = $("#stop-button");
 var resetButton = $("#reset-button");
 
 startButton.click(function () {
-  countdown.runner("start");
-  stopwatch.runner("start");
-
-  startButton.prop("disabled", true);
-  stopButton.prop("disabled", false);
-  resetButton.prop("disabled", false);
-
-  updateBackground("is-success");
+  startState();
 });
 
 stopButton.click(function () {
-  countdown.runner("stop");
-  stopwatch.runner("stop");
-
-  startButton.prop("disabled", false);
-  stopButton.prop("disabled", true);
-  resetButton.prop("disabled", false);
-
-  updateBackground("is-light");
+  stopState();
 });
 
 resetButton.click(function () {
@@ -42,6 +28,14 @@ resetButton.click(function () {
     return;
   }
   resetState();
+});
+
+$("#countdown-container").click(function () {
+  if (startButton.prop("disabled") == false) {
+    startState();
+  } else if (stopButton.prop("disabled") == false) {
+    stopState();
+  }
 });
 
 $(".modal-button").click(function () {
@@ -56,6 +50,28 @@ $("#save-settings-button").click(function () {
   updateSettings();
   closeModal($(this));
 });
+
+function startState() {
+  countdown.runner("start");
+  stopwatch.runner("start");
+
+  startButton.prop("disabled", true);
+  stopButton.prop("disabled", false);
+  resetButton.prop("disabled", false);
+
+  updateBackground("is-success");
+}
+
+function stopState() {
+  countdown.runner("stop");
+  stopwatch.runner("stop");
+
+  startButton.prop("disabled", false);
+  stopButton.prop("disabled", true);
+  resetButton.prop("disabled", false);
+
+  updateBackground("is-light");
+}
 
 function resetState() {
   countdown.runner("stop");
