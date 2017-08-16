@@ -2,7 +2,7 @@
   "name": "events-timer",
   "version": "1.0.1",
   "author": "Martin Hlaváč",
-  "description": "This is a simple countdown application with two time dependent notifications. The main use is for speakers at events and conferences ...",
+  "description": "This is a simple countdown application with two time dependent notifications. The application main target group is speakers at events, conferences, etc.",
   "dependencies": {
     "bulma": "^0.4.4",
     "jquery": "^3.2.1",

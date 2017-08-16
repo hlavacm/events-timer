@@ -24,7 +24,7 @@ stopButton.click(function () {
 });
 
 resetButton.click(function () {
-  if (!confirm("Reset cancels countdown and restores default state. Do you really want to confirm it?")) {
+  if (!confirm("Are you sure you want to reset your application? (= cancel countdown and restore default state)")) {
     return;
   }
   resetState();
@@ -93,7 +93,7 @@ function closeModal(element) {
 
 function updateSettings() {
   if (resetButton.prop("disabled") == false) {
-    if (!confirm("Apply will do reset. Do you really want to confirm it?")) {
+    if (!confirm("Changes in settings will reset your application. Do you want to continue?")) {
       return;
     }
   }
