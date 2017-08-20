@@ -3,11 +3,11 @@ const DEFAULT_COOKIE_EXPIRES = 90;
 // The following code is based off a toggle menu by @Bradcomp
 // source: https://gist.github.com/Bradcomp/a9ef2ef322a8e8017443b626208999c1
 (function () {
-  var burger = document.querySelector('.nav-toggle');
-  var menu = document.querySelector('.nav-menu');
-  burger.addEventListener('click', function () {
-    burger.classList.toggle('is-active');
-    menu.classList.toggle('is-active');
+  var burger = document.querySelector(".nav-toggle");
+  var menu = document.querySelector(".nav-menu");
+  burger.addEventListener("click", function () {
+    burger.classList.toggle("is-active");
+    menu.classList.toggle("is-active");
   });
 })();
 
@@ -31,11 +31,11 @@ resetButton.click(function () {
 });
 
 $("#countdown-container").click(function () {
-  if (startButton.prop("disabled") == false) {
-    startState();
-  } else if (stopButton.prop("disabled") == false) {
-    stopState();
-  }
+  toggleState();
+});
+
+$(document).bind("keydown", "space", function () {
+  toggleState();
 });
 
 $(".modal-button").click(function () {
@@ -71,6 +71,14 @@ function stopState() {
   resetButton.prop("disabled", false);
 
   updateBackground("is-light");
+}
+
+function toggleState() {
+  if (startButton.prop("disabled") == false) {
+    startState();
+  } else if (stopButton.prop("disabled") == false) {
+    stopState();
+  }
 }
 
 function resetState() {

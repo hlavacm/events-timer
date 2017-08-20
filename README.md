@@ -8,5 +8,5 @@ The application main target group is speakers at events, conferences, etc.
 
 See at: 
 
-- http://events-timer.eu
-- https://hlavacm.github.io/events-timer/
+- **http://events-timer.eu**
+- *https://hlavacm.github.io/events-timer/*
