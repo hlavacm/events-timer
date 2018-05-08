@@ -6,7 +6,7 @@
             <nav class="navbar">
               <div class="navbar-brand">
                 <div class="navbar-item">
-                  Elapsed time:&nbsp;<span id="stopwatch">00:00:00</span>
+                  Elapsed time:&nbsp;<span id="stopwatch">{{ stopwatchTime }}</span>
                 </div>
                 <div class="navbar-burger burger" data-target="header-navbar-menu">
                   <span></span>
@@ -19,7 +19,7 @@
                   <div class="navbar-item navbar-item-control">
                     <div class="field">
                       <p class="control">
-                        <button id="start-button" class="button is-success">
+                        <button id="start-button" class="button is-success" @click.prevent="play">
                           <svg width="20px" height="20px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" class="is-light"><path d="M405.2,232.9L126.8,67.2c-3.4-2-6.9-3.2-10.9-3.2c-10.9,0-19.8,9-19.8,20H96v344h0.1c0,11,8.9,20,19.8,20  c4.1,0,7.5-1.4,11.2-3.4l278.1-165.5c6.6-5.5,10.8-13.8,10.8-23.1C416,246.7,411.8,238.5,405.2,232.9z"/></svg><span>Start</span>
                         </button>
                       </p>
@@ -28,7 +28,7 @@
                   <div class="navbar-item navbar-item-control">
                     <div class="field">
                       <p class="control">
-                        <button id="stop-button" class="button is-light" disabled>
+                        <button id="stop-button" class="button is-light" @click.prevent="pause">
                           <svg width="20px" height="20px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" class="is-dark"><g><path d="M224,435.8V76.1c0-6.7-5.4-12.1-12.2-12.1h-71.6c-6.8,0-12.2,5.4-12.2,12.1v359.7c0,6.7,5.4,12.2,12.2,12.2h71.6   C218.6,448,224,442.6,224,435.8z"/><path d="M371.8,64h-71.6c-6.7,0-12.2,5.4-12.2,12.1v359.7c0,6.7,5.4,12.2,12.2,12.2h71.6c6.7,0,12.2-5.4,12.2-12.2V76.1   C384,69.4,378.6,64,371.8,64z"/></g></svg><span>Stop</span>
                         </button>
                       </p>
@@ -37,7 +37,7 @@
                   <div class="navbar-item navbar-item-control">
                     <div class="field">
                       <p class="control">
-                        <button id="reset-button" class="button is-dark" disabled>
+                        <button id="reset-button" class="button is-dark" @click.prevent="reset">
                           <svg width="20px" height="20px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" class="is-light"><path d="M437.4,64H74.6C68.7,64,64,68.7,64,74.6v362.8c0,5.9,4.7,10.6,10.6,10.6h362.8c5.8,0,10.6-4.7,10.6-10.6V74.6  C448,68.7,443.2,64,437.4,64z"/></svg><span>Reset</span>
                         </button>
                       </p>
@@ -66,7 +66,7 @@
         </div>
         <div id="countdown-container" class="hero-body">
           <div class="container is-fluid has-text-centered">
-            <span id="countdown">00:00:00</span>
+            <span id="countdown">{{ countdownTime }}</span>
           </div>
         </div>
       </section>
@@ -85,7 +85,39 @@ export default {
     SettingsPopup,
     CreditsPopup
   },
+  data () {
+    return {
+      ticker: null
+    }
+  },
+  computed: {
+    countdownTime: function () {
+      return this.$store.getters.countdownTime
+    },
+    stopwatchTime: function () {
+      return this.$store.getters.stopwatchTime
+    }
+  },
   methods: {
+    play: function () {
+      this.tick()
+      this.ticker = setInterval(this.tick, 1000)
+    },
+    pause: function () {
+      clearInterval(this.ticker)
+      this.ticker = null
+    },
+    reset: function () {
+      this.pause()
+      if (window.confirm('Do you really want to reset current timer?')) {
+        this.$store.commit('reset')
+      } else {
+        this.play()
+      }
+    },
+    tick: function () {
+      this.$store.commit('increment')
+    },
     showSettingsPopup: function () {
       this.$refs.settingsPopup.isActive = true
     },

@@ -4,15 +4,19 @@ import Vue from 'vue'
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 import App from './App'
+import { store } from './store.js'
+import moment from 'moment'
 
 require('./sass/app.scss')
 
 Vue.use(Buefy)
+Vue.prototype.moment = moment
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   components: { App },
   template: '<App/>'
 })
