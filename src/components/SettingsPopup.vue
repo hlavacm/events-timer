@@ -13,7 +13,7 @@
           <div class="field-body">
             <div class="field">
               <p class="control has-icons-right">
-                <input id="countdown-hours-field" name="countdown-hours" type="number" min="0" max="23" placeholder="00" class="input" required>
+                <input name="countdown-hours" type="number" min="0" max="23" placeholder="00" class="input" required>
                 <span class="icon is-normal is-right">HH</span>
               </p>
             </div>
@@ -26,7 +26,7 @@
           <div class="field-body">
             <div class="field">
               <p class="control has-icons-right">
-                <input id="countdown-minutes-field" name="countdown-hours" type="number" min="0" max="59" placeholder="00" class="input"
+                <input name="countdown-hours" type="number" min="0" max="59" placeholder="00" class="input"
                   required>
                 <span class="icon is-normal is-right">MM</span>
               </p>
@@ -40,7 +40,7 @@
           <div class="field-body">
             <div class="field">
               <p class="control has-icons-right">
-                <input id="countdown-seconds-field" name="countdown-seconds" type="number" min="0" max="59" placeholder="00" class="input"
+                <input name="countdown-seconds" type="number" min="0" max="59" placeholder="00" class="input"
                   required>
                 <span class="icon is-normal is-right">SS</span>
               </p>
@@ -54,7 +54,7 @@
           <div class="field-body">
             <div class="field">
               <p class="control has-icons-right">
-                <input id="warning-field" name="warning" type="number" min="0" max="100" placeholder="00" class="input" required>
+                <input name="warning" type="number" min="0" max="100" placeholder="00" class="input" required>
                 <span class="icon is-normal is-right">%</span>
               </p>
             </div>
@@ -67,7 +67,7 @@
           <div class="field-body">
             <div class="field">
               <p class="control has-icons-right">
-                <input id="pulse-field" name="pulse" type="number" min="0" max="100" placeholder="00" class="input" required>
+                <input name="pulse" type="number" min="0" max="100" placeholder="00" class="input" required>
                 <span class="icon is-normal is-right">%</span>
               </p>
             </div>
@@ -84,7 +84,7 @@
 
 <script>
 export default {
-  name: 'SettingsPopup',
+  name: 'settings-popup',
   data () {
     return {
       isActive: false

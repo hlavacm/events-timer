@@ -13,7 +13,7 @@ export const store = new Vuex.Store({
   state: {
     countdown: 10,
     stopwatch: 0,
-    currentFormat: LONG_TIME_FORMAT
+    currentFormat: SHORT_TIME_FORMAT
   },
   mutations: {
     increment (state) {
@@ -39,7 +39,8 @@ export const store = new Vuex.Store({
   getters: {
     countdownTime: state => {
       if (state.countdown < 0) {
-        return moment.utc(state.countdown * 1000 * -1).format(state.currentFormat)
+        let value = moment.utc(state.countdown * 1000 * -1).format(state.currentFormat)
+        return `-${value}`
       }
       return moment.utc(state.countdown * 1000).format(state.currentFormat)
     },

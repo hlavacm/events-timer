@@ -1,15 +1,17 @@
 <template>
   <b-modal :active.sync="isActive" has-modal-card>
-    <div class="modal-card">
+    <div class="modal-card" style="width: auto">
       <header class="modal-card-head">
-        <p class="modal-card-title">Credits v2.0</p>
+        <p class="modal-card-title">Credits v 2.0</p>
         <button class="delete close-modal" @click="isActive = false"></button>
       </header>
       <section class="modal-card-body">
         <div class="content">
           <p>
-            This is a simple countdown application with two time dependent notifications. The application main target group is speakers
-            at events, conferences, etc.
+            This is a simple countdown application with two time dependent notifications.
+          </p>
+          <p>
+            The application main target group is speakersat events, conferences, etc.
           </p>
           <p>Copyright &copy; <a href="http://hlavacm.net" target="_blank">Martin Hlaváč</a> 2017-2018</p>
         </div>
@@ -30,15 +32,15 @@
         </div>
       </section>
       <footer class="modal-card-foot">
-        <button class="button" type="button" @click="isActive = false">OK</button>
+          <button class="button" type="button" @click="isActive = false">OK</button>
       </footer>
-    </div>
+  </div>
   </b-modal>
 </template>
 
 <script>
 export default {
-  name: 'CreditsPopup',
+  name: 'credits-popup',
   data () {
     return {
       isActive: false

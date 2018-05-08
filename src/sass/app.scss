@@ -7,7 +7,7 @@ body {
 }
 
 .hero-head {
-    border-bottom: 1px solid $grey-dark !important;
+    border-bottom: 1px solid rgba($white-ter, .25) !important;
 }
 
 .hero-head .navbar-item-control .button {
@@ -30,4 +30,12 @@ body {
 
 .hero-head svg.is-dark path {
     fill: $black-bis;
+}
+
+.modal-card-body .content {
+    color: $black-ter;
+}
+
+.modal-card-body .content a {
+    text-decoration: underline;
 }
