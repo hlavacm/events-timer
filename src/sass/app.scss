@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+@import '~bulma/bulma';
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.hero-head {
+    border-bottom: 1px solid $grey-dark !important;
+}
+
+.hero-head .navbar-item-control .button {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.hero-head .navbar-item-separator {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.hero-head svg {
+    margin-right: 0.5rem;
+}
+
+.hero-head svg.is-light path {
+    fill: $white-bis;
+}
+
+.hero-head svg.is-dark path {
+    fill: $black-bis;
+}
