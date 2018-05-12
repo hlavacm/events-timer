@@ -2,6 +2,10 @@
 
 @import '~bulma/bulma';
 
+html {
+    overflow-y: hidden;
+}
+
 body {
     font-family: 'Roboto Condensed', sans-serif;
 }
@@ -30,12 +34,4 @@ body {
 
 .hero-head svg.is-dark path {
     fill: $black-bis;
-}
-
-.modal-card-body .content {
-    color: $black-ter;
-}
-
-.modal-card-body .content a {
-    text-decoration: underline;
 }

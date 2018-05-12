@@ -8,7 +8,6 @@ export default {
   props: {
     pulsed: {
       type: Boolean,
-      required: true,
       default: false
     }
   },

@@ -12,18 +12,24 @@
           </div>
         </div>
       </section>
+      <settings-popup ref="settingsPopup"></settings-popup>
+      <credits-popup ref="creditsPopup"></credits-popup>
   </div>
 </template>
 
 <script>
 import ControlPanel from './components/ControlPanel'
 import Countdown from './components/Countdown'
+import SettingsPopup from './components/SettingsPopup'
+import CreditsPopup from './components/CreditsPopup'
 
 export default {
   name: 'App',
   components: {
     ControlPanel,
-    Countdown
+    Countdown,
+    SettingsPopup,
+    CreditsPopup
   },
   data () {
     return {
