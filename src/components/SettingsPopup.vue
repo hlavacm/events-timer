@@ -229,14 +229,7 @@ export default {
       return matches[0]
     },
     normalizeTimeValue: function (time, minSeconds, maxSeconds) {
-      console.log(['time', time])
       let value = this.getTimeSeconds(time)
-      console.log({
-        time: time,
-        minSeconds: minSeconds,
-        maxSeconds: maxSeconds,
-        value: value
-      })
       if (value < minSeconds) {
         return moment.utc(minSeconds * 1000).format(LONG_TIME_FORMAT)
       }
