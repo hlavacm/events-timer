@@ -1,5 +1,5 @@
 <template>
-  <b-modal :active.sync="isActive" has-modal-card>
+  <b-modal :active.sync="isActive">
     <div class="modal-card" style="width: auto">
       <header class="modal-card-head">
         <p class="modal-card-title">Credits v2.0</p>

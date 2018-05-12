@@ -1,5 +1,5 @@
 <template>
-  <span id="countdown" v-bind:class="{ pulsar: pulsed }">{{ countdownTime }}</span>
+  <span v-bind:class="{ pulsar: pulsed }" v-bind:style="{ fontSize: fontSize + 'vw' }">{{ countdownTime }}</span>
 </template>
 
 <script>
@@ -14,15 +14,15 @@ export default {
   computed: {
     countdownTime: function () {
       return this.$store.getters.countdownTime
+    },
+    fontSize: function () {
+      return this.$store.state.fontSize
     }
   }
 }
 </script>
 
 <style scoped>
-#countdown {
-  font-size: 25vw;
-}
 @keyframes pulsition {
   0% { opacity: 1; }
   40%{ opacity: 0; }

@@ -97,25 +97,32 @@ export default {
     },
     reset: function () {
       this.stop()
-      if (window.confirm('Do you really want to reset current timer?')) {
-        this.$store.commit('reset')
-        this.isTicking = null
-        this.$emit('colored', 'is-dark')
-        this.$emit('pulsed', false)
-      } else {
-        this.play()
-      }
+      this.$dialog.confirm({
+        title: 'Reset',
+        message: 'Are you sure you want to reset your application? (= cancel countdown and restore default state)',
+        confirmText: 'OK',
+        type: 'is-danger',
+        onConfirm: () => {
+          this.$store.commit('reset')
+          this.isTicking = null
+          this.$emit('colored', 'is-dark')
+          this.$emit('pulsed', false)
+        },
+        onCancel: () => {
+          this.play()
+        }
+      })
     },
     tick: function () {
       this.$store.commit('increment')
       this.isTicking = true
       this.isPause = false
-      if (this.$store.state.countdown === 0) {
+      if (this.$store.state.countdownSeconds === 0) {
         this.$emit('colored', 'is-danger')
-      } else if (this.$store.state.countdown === 2) {
+      } else if (this.$store.state.warningEnabled && this.$store.state.countdownSeconds === 2) {
         this.$emit('colored', 'is-warning')
       }
-      if (this.$store.state.countdown === 1) {
+      if (this.$store.state.pulseEnabled && this.$store.state.countdownSeconds === 1) {
         this.$emit('pulsed', true)
       }
     }

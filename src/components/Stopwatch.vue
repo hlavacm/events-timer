@@ -1,5 +1,7 @@
 <template>
-  <span>Elapsed time: {{ stopwatchTime }}</span>
+  <div v-show="stopwatchEnabled">
+    <span>Elapsed time: {{ stopwatchTime }}</span>
+  </div>
 </template>
 
 <script>
@@ -8,6 +10,9 @@ export default {
   computed: {
     stopwatchTime: function () {
       return this.$store.getters.stopwatchTime
+    },
+    stopwatchEnabled: function () {
+      return this.$store.state.stopwatchEnabled
     }
   }
 }
