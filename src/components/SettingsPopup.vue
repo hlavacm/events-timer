@@ -30,12 +30,12 @@
                 </b-tab-item>
                 <!-- Custom -->
                 <b-tab-item label="Custom">
-                  <b-field label="Countdown Time">
+                  <b-field label="Countdown Time" message="Min. 00:01:00 and max. 00:59:59 or 23:59:59 by the current format">
                     <p class="control">
                       <input type="time" v-model="countdownTimeValue" placeholder="Time" class="input is-medium is-rounded" @change.prevent="countdownChanged" required>
                     </p>
                   </b-field>
-                  <b-field label="Warning Time">
+                  <b-field label="Warning Time (of the Countdown)">
                     <div class="columns">
                       <div class="column">
                         <p class="control">
@@ -43,14 +43,14 @@
                         </p>
                       </div>
                       <div class="column">
-                        <div class="control has-icons-right">
-                          <input size="30" type="number" v-model="warningPercentageValue" min="0" max="100" class="input is-medium is-rounded" placeholder="Percentage" @change.prevent="warningPercentageChanged" :disabled="!warningEnabled" required>
+                        <p class="control has-icons-right">
+                          <input type="number" v-model="warningPercentageValue" min="0" max="100" class="input is-medium is-rounded" placeholder="Percentage" @change.prevent="warningPercentageChanged" :disabled="!warningEnabled" required>
                           <span class="icon is-right">%</span>
-                        </div>
+                        </p>
                       </div>
                     </div>
                   </b-field>
-                  <b-field label="Pulse Time">
+                  <b-field label="Pulse Time (of the Countdown)">
                     <div class="columns">
                       <div class="column">
                         <p class="control">
@@ -59,7 +59,7 @@
                       </div>
                       <div class="column">
                         <div class="control has-icons-right">
-                          <input size="30" type="number" v-model="pulsePercentageValue" min="0" max="100" placeholder="Percentage" class="input is-medium is-rounded" @change.prevent="pulsePercentageChanged" :disabled="!pulseEnabled" required>
+                          <input type="number" v-model="pulsePercentageValue" min="0" max="100" placeholder="Percentage" class="input is-medium is-rounded" @change.prevent="pulsePercentageChanged" :disabled="!pulseEnabled" required>
                           <span class="icon is-right">%</span>
                         </div>
                       </div>
@@ -71,12 +71,12 @@
                   <b-field label="Time Format">
                     <div class="field is-grouped is-grouped-multiline">
                       <p class="control">
-                        <b-radio-button v-model="currentFormatValue" native-value="HH:mm:ss" type="is-info" size="is-medium">
+                        <b-radio-button v-model="currentFormatValue" native-value="HH:mm:ss" size="is-medium" type="is-info">
                             <span>HH:mm:ss</span>
                         </b-radio-button>
                       </p>
                       <p class="control">
-                        <b-radio-button v-model="currentFormatValue" native-value="mm:ss" type="is-info" size="is-medium">
+                        <b-radio-button v-model="currentFormatValue" native-value="mm:ss" size="is-medium" type="is-info">
                             <span>mm:ss</span>
                         </b-radio-button>
                       </p>
@@ -111,7 +111,7 @@
             </b-tabs>
           </section>
           <footer class="modal-card-foot">
-            <button class="button is-success" @click.prevent="isActive = false">Apply</button>
+            <button class="button is-success" @click.prevent="applySettings">Apply</button>
             <button class="button" @click.prevent="isActive = false">Storno</button>
           </footer>
       </div>
@@ -151,12 +151,12 @@ export default {
       set: function (value) { this.warningTime = this.normalizeTimeValue(value, 0, this.getTimeSeconds(this.countdownTimeValue)) }
     },
     warningPercentageValue: {
-      get: function () { return this.normalizeNumberValue(this.warningPercentage, 0, this.getTimeSeconds(this.countdownTimeValue)) },
-      set: function (value) { this.warningPercentage = this.normalizeNumberValue(value, 0, this.getTimeSeconds(this.countdownTimeValue)) }
+      get: function () { return this.normalizeNumberValue(this.warningPercentage, 0, 100) },
+      set: function (value) { this.warningPercentage = this.normalizeNumberValue(value, 0, 100) }
     },
     pulseTimeValue: {
-      get: function () { return this.normalizeTimeValue(this.pulseTime, 0, 100) },
-      set: function (value) { this.pulseTime = this.normalizeTimeValue(value, 0, 100) }
+      get: function () { return this.normalizeTimeValue(this.pulseTime, 0, this.getTimeSeconds(this.countdownTimeValue)) },
+      set: function (value) { this.pulseTime = this.normalizeTimeValue(value, 0, this.getTimeSeconds(this.countdownTimeValue)) }
     },
     pulsePercentageValue: {
       get: function () { return this.normalizeNumberValue(this.pulsePercentage, 0, 100) },
@@ -213,6 +213,34 @@ export default {
       this.countdownChanged()
       this.currentTabIndex = 1
     },
+    applySettings: function () {
+      this.$dialog.confirm({
+        title: 'Apply Settings',
+        message: 'Changes in settings will reset your application. Do you want to continue?',
+        confirmText: 'OK',
+        type: 'is-danger',
+        onConfirm: () => {
+          this.$parent.$refs.controlPanel.stop()
+          let state = {
+            lastSettingsTabIndex: this.currentTabIndex,
+            baseSeconds: this.getTimeSeconds(this.countdownTimeValue),
+            stopwatchEnabled: this.stopwatchEnabled,
+            warningSeconds: this.getTimeSeconds(this.warningTimeValue),
+            warningEnabled: this.warningEnabled,
+            pulseSeconds: this.getTimeSeconds(this.pulseTimeValue),
+            pulseEnabled: this.pulseEnabled,
+            currentFormat: this.currentFormatValue,
+            fontSize: this.fontSizeValue
+          }
+          this.$store.commit('update', state)
+          this.$parent.$refs.controlPanel.restore()
+          this.isActive = false
+        },
+        onCancel: () => {
+          this.isActive = false
+        }
+      })
+    },
     normalizeNumberValue: function (value, min, max) {
       if (value < min) {
         return min
@@ -243,7 +271,7 @@ export default {
 </script>
 
 <style scoped>
-.modal-card-body { min-height: 405px; }
+.modal-card-body { min-height: 425px; }
 .modal-card-foot { justify-content: space-between; }
 input[type=text]::-ms-clear {  display: none; width : 0; height: 0; }
 input[type=text]::-ms-reveal {  display: none; width : 0; height: 0; }

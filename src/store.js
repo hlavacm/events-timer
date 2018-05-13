@@ -8,6 +8,7 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     lastSettingsTabIndex: 1,
+    baseSeconds: 60,
     countdownSeconds: 60,
     stopwatchSeconds: 0,
     stopwatchEnabled: true,
@@ -27,8 +28,19 @@ export const store = new Vuex.Store({
       }
     },
     reset (state) {
-      state.countdownSeconds = 10
+      state.countdownSeconds = state.baseSeconds
       state.stopwatchSeconds = 0
+    },
+    update (state, settings) {
+      state.lastSettingsTabIndex = settings.lastSettingsTabIndex
+      state.baseSeconds = settings.baseSeconds
+      state.stopwatchEnabled = settings.stopwatchEnabled
+      state.warningSeconds = settings.warningSeconds
+      state.warningEnabled = settings.warningEnabled
+      state.pulseSeconds = settings.pulseSeconds
+      state.pulseEnabled = settings.pulseEnabled
+      state.currentFormat = settings.currentFormat
+      state.fontSize = settings.fontSize
     }
   },
   getters: {

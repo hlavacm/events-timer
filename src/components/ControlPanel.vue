@@ -103,15 +103,18 @@ export default {
         confirmText: 'OK',
         type: 'is-danger',
         onConfirm: () => {
-          this.$store.commit('reset')
-          this.isTicking = null
-          this.$emit('colored', 'is-dark')
-          this.$emit('pulsed', false)
+          this.restore()
         },
         onCancel: () => {
           this.play()
         }
       })
+    },
+    restore: function () {
+      this.$store.commit('reset')
+      this.isTicking = null
+      this.$emit('colored', 'is-dark')
+      this.$emit('pulsed', false)
     },
     tick: function () {
       this.$store.commit('increment')
@@ -119,10 +122,10 @@ export default {
       this.isPause = false
       if (this.$store.state.countdownSeconds === 0) {
         this.$emit('colored', 'is-danger')
-      } else if (this.$store.state.warningEnabled && this.$store.state.countdownSeconds === 2) {
+      } else if (this.$store.state.warningEnabled && this.$store.state.countdownSeconds === this.$store.state.warningSeconds) {
         this.$emit('colored', 'is-warning')
       }
-      if (this.$store.state.pulseEnabled && this.$store.state.countdownSeconds === 1) {
+      if (this.$store.state.pulseEnabled && this.$store.state.countdownSeconds === this.$store.state.pulseSeconds) {
         this.$emit('pulsed', true)
       }
     }

@@ -35,3 +35,8 @@ body {
 .hero-head svg.is-dark path {
     fill: $black-bis;
 }
+
+.modal-card-body p.help { 
+    text-align: right;
+    padding-right: 1rem; 
+}
