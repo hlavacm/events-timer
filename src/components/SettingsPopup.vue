@@ -232,6 +232,9 @@ export default {
             currentFormat: this.currentFormatValue,
             fontSize: this.fontSizeValue
           }
+          for (var key in state) {
+            localStorage.setItem(key, btoa(state[key]))
+          }
           this.$store.commit('update', state)
           this.$parent.$refs.controlPanel.restore()
           this.isActive = false

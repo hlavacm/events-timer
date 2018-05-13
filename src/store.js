@@ -7,17 +7,17 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    lastSettingsTabIndex: 1,
-    baseSeconds: 60,
-    countdownSeconds: 60,
+    lastSettingsTabIndex: tryInitializeValue('lastSettingsTabIndex', 1, (value) => { return parseInt(value) }),
+    baseSeconds: tryInitializeValue('baseSeconds', 1800, (value) => { return parseInt(value) }),
+    countdownSeconds: tryInitializeValue('baseSeconds', 1800, (value) => { return parseInt(value) }),
     stopwatchSeconds: 0,
-    stopwatchEnabled: true,
-    warningSeconds: 6,
-    warningEnabled: true,
-    pulseSeconds: 3,
-    pulseEnabled: true,
-    currentFormat: LONG_TIME_FORMAT,
-    fontSize: DEFAULT_FONT_SIZE
+    stopwatchEnabled: tryInitializeValue('stopwatchEnabled', true, (value) => { return value === 'true' }),
+    warningSeconds: tryInitializeValue('warningSeconds', 180, (value) => { return parseInt(value) }),
+    warningEnabled: tryInitializeValue('warningEnabled', true, (value) => { return value === 'true' }),
+    pulseSeconds: tryInitializeValue('pulseSeconds', 90, (value) => { return parseInt(value) }),
+    pulseEnabled: tryInitializeValue('pulseEnabled', true, (value) => { return value === 'true' }),
+    currentFormat: tryInitializeValue('currentFormat', LONG_TIME_FORMAT),
+    fontSize: tryInitializeValue('fontSize', DEFAULT_FONT_SIZE, (value) => { return parseInt(value) })
   },
   mutations: {
     increment (state) {
@@ -74,3 +74,15 @@ export const store = new Vuex.Store({
     }
   }
 })
+
+function tryInitializeValue (storageKey, defaultValue, filterFunction) {
+  let storageValue = localStorage.getItem(storageKey)
+  if (storageValue) {
+    let pureStorageValue = atob(storageValue)
+    if (filterFunction) {
+      return filterFunction(pureStorageValue)
+    }
+    return pureStorageValue
+  }
+  return defaultValue
+}
