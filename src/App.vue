@@ -38,8 +38,8 @@ export default {
   },
   mounted: function () {
     window.addEventListener('keyup', this.handleKey)
-    let el = document.getElementById('app-content')
-    el.onclick = () => {
+    let appContent = document.getElementById('app-content')
+    appContent.onclick = () => {
       this.toggleState()
     }
   },
@@ -51,6 +51,9 @@ export default {
       this.$refs.countdown.pulsed = value
     },
     handleKey: function (event) {
+      if (this.$refs.settingsPopup.isActive || this.$refs.creditsPopup.isActive) {
+        return
+      }
       if (event.keyCode === 32) { // enter
         this.toggleState()
       } else if (event.keyCode === 27) { // esc
@@ -69,7 +72,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-
-</style>
