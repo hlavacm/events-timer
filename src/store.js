@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import moment from 'moment'
-import { LONG_TIME_FORMAT, DEFAULT_FONT_SIZE, getMaxCurrentSeconds } from './shared.js'
+import { LONG_TIME_FORMAT, DEFAULT_FONT_SIZE, MAX_LONG_TIME_VALUE, MAX_SHORT_TIME_VALUE } from './shared.js'
 
 Vue.use(Vuex)
 
@@ -21,8 +21,7 @@ export const store = new Vuex.Store({
   },
   mutations: {
     increment (state) {
-      let maxCurrentSeconds = getMaxCurrentSeconds(state.currentFormat)
-      if (state.stopwatchSeconds < maxCurrentSeconds) {
+      if (state.stopwatchSeconds < MAX_LONG_TIME_VALUE) {
         state.countdownSeconds--
         state.stopwatchSeconds++
       }
@@ -46,7 +45,8 @@ export const store = new Vuex.Store({
   getters: {
     countdownTime: state => {
       if (state.countdownSeconds < 0) {
-        let value = moment.utc(state.countdownSeconds * 1000 * -1).format(state.currentFormat)
+        let format = (state.countdownSeconds < -MAX_SHORT_TIME_VALUE) ? LONG_TIME_FORMAT : state.currentFormat
+        let value = moment.utc(state.countdownSeconds * 1000 * -1).format(format)
         return `-${value}`
       }
       return moment.utc(state.countdownSeconds * 1000).format(state.currentFormat)
@@ -55,7 +55,8 @@ export const store = new Vuex.Store({
       return moment.utc(state.countdownSeconds * 1000).format(LONG_TIME_FORMAT)
     },
     stopwatchTime: state => {
-      return moment.utc(state.stopwatchSeconds * 1000).format(state.currentFormat)
+      let format = (state.stopwatchSeconds > MAX_SHORT_TIME_VALUE) ? LONG_TIME_FORMAT : state.currentFormat
+      return moment.utc(state.stopwatchSeconds * 1000).format(format)
     },
     warningTime: state => {
       return moment.utc(state.warningSeconds * 1000).format(state.currentFormat)

@@ -11,7 +11,7 @@
             This is a simple countdown application with two time dependent notifications.
           </p>
           <p>
-            The application main target group is speakersat events, conferences, etc.
+            The application's main target group are speakers at events, conferences, etc.
           </p>
           <p>Copyright &copy; <a href="http://hlavacm.net" target="_blank">Martin Hlaváč</a> 2017-2018</p>
         </div>

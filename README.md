@@ -4,7 +4,7 @@
 
 This is a simple countdown application with two time dependent notifications.
 
-The application main target group is speakers at events, conferences, etc.
+The application's main target group are speakers at events, conferences, etc.
 
 ## Online Version
 

@@ -15,31 +15,31 @@
                   </p>
                   <hr>
                   <div class="field is-grouped is-grouped-multiline is-grouped-centered">
-                    <p class="control"><button class="button is-info is-large" @click.prevent="applyQuickTime(5)">05:00</button></p>
-                    <p class="control"><button class="button is-info is-large" @click.prevent="applyQuickTime(10)">10:00</button></p>
-                    <p class="control"><button class="button is-info is-large" @click.prevent="applyQuickTime(15)">15:00</button></p>
-                    <p class="control"><button class="button is-info is-large" @click.prevent="applyQuickTime(20)">20:00</button></p>
+                    <p class="control"><button class="button is-info is-medium" @click.prevent="applyQuickTime(5)">00:05:00</button></p>
+                    <p class="control"><button class="button is-info is-medium" @click.prevent="applyQuickTime(10)">00:10:00</button></p>
+                    <p class="control"><button class="button is-info is-medium" @click.prevent="applyQuickTime(15)">00:15:00</button></p>
+                    <p class="control"><button class="button is-info is-medium" @click.prevent="applyQuickTime(20)">00:20:00</button></p>
                   </div>
                   <hr>
                   <div class="field is-grouped is-grouped-multiline is-grouped-centered">
-                    <p class="control"><button class="button is-info is-large" @click.prevent="applyQuickTime(30)">30:00</button></p>
-                    <p class="control"><button class="button is-info is-large" @click.prevent="applyQuickTime(40)">40:00</button></p>
-                    <p class="control"><button class="button is-info is-large" @click.prevent="applyQuickTime(45)">45:00</button></p>
-                    <p class="control"><button class="button is-info is-large" @click.prevent="applyQuickTime(50)">50:00</button></p>
+                    <p class="control"><button class="button is-info is-medium" @click.prevent="applyQuickTime(30)">00:30:00</button></p>
+                    <p class="control"><button class="button is-info is-medium" @click.prevent="applyQuickTime(40)">00:40:00</button></p>
+                    <p class="control"><button class="button is-info is-medium" @click.prevent="applyQuickTime(45)">00:45:00</button></p>
+                    <p class="control"><button class="button is-info is-medium" @click.prevent="applyQuickTime(50)">00:50:00</button></p>
                   </div>
                 </b-tab-item>
                 <!-- Custom -->
                 <b-tab-item label="Custom">
                   <b-field label="Countdown Time" message="Min. 00:01:00 and max. 00:59:59 or 23:59:59 by the current format">
                     <p class="control">
-                      <input type="time" v-model="countdownTimeValue" placeholder="Time" class="input is-medium is-rounded" @change.prevent="countdownChanged" required>
+                      <input type="time" v-model="countdownTimeValue" placeholder="Time" min="00:00" max="23:59:59" step="300" class="input is-medium is-rounded" @change.prevent="countdownChanged" required>
                     </p>
                   </b-field>
                   <b-field label="Warning Time (of the Countdown)">
                     <div class="columns">
                       <div class="column">
                         <p class="control">
-                          <input type="time" v-model="warningTimeValue" placeholder="Time" class="input is-medium is-rounded" @change.prevent="warningTimeChanged" :disabled="!warningEnabled" required>
+                          <input type="time" v-model="warningTimeValue" placeholder="Time" min="00:00" max="23:59:59" step="60" class="input is-medium is-rounded" @change.prevent="warningTimeChanged" :disabled="!warningEnabled" required>
                         </p>
                       </div>
                       <div class="column">
@@ -54,7 +54,7 @@
                     <div class="columns">
                       <div class="column">
                         <p class="control">
-                          <input type="time" v-model="pulseTimeValue" placeholder="Time" class="input is-medium is-rounded" @change.prevent="pulseTimeChanged" :disabled="!pulseEnabled" required>
+                          <input type="time" v-model="pulseTimeValue" placeholder="Time" min="00:00" max="23:59:59" step="60" class="input is-medium is-rounded" @change.prevent="pulseTimeChanged" :disabled="!pulseEnabled" required>
                         </p>
                       </div>
                       <div class="column">
