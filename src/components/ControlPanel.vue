@@ -86,7 +86,7 @@ export default {
     play: function () {
       this.tick()
       this.ticker = setInterval(this.tick, 1000)
-      this.$emit('colored', 'is-success')
+      this.$emit('colored', this.$store.state.countdownSeconds > 0 ? 'is-success' : 'is-danger')
     },
     stop: function () {
       clearInterval(this.ticker)
