@@ -39,7 +39,7 @@
                     <div class="columns">
                       <div class="column">
                         <p class="control">
-                          <input type="time" v-model="warningTimeValue" placeholder="Time" min="00:00" max="23:59:59" step="60" class="input is-medium is-rounded" @change.prevent="warningTimeChanged" :disabled="!warningEnabled" required>
+                          <input type="time" v-model="warningTimeValue" placeholder="Time" min="00:00" max="23:59:59" step="5" class="input is-medium is-rounded" @change.prevent="warningTimeChanged" :disabled="!warningEnabled" required>
                         </p>
                       </div>
                       <div class="column">
@@ -54,7 +54,7 @@
                     <div class="columns">
                       <div class="column">
                         <p class="control">
-                          <input type="time" v-model="pulseTimeValue" placeholder="Time" min="00:00" max="23:59:59" step="60" class="input is-medium is-rounded" @change.prevent="pulseTimeChanged" :disabled="!pulseEnabled" required>
+                          <input type="time" v-model="pulseTimeValue" placeholder="Time" min="00:00" max="23:59:59" step="5" class="input is-medium is-rounded" @change.prevent="pulseTimeChanged" :disabled="!pulseEnabled" required>
                         </p>
                       </div>
                       <div class="column">
@@ -71,38 +71,50 @@
                   <b-field label="Time Format">
                     <div class="field is-grouped is-grouped-multiline">
                       <p class="control">
-                        <b-radio-button v-model="currentFormatValue" native-value="HH:mm:ss" size="is-medium" type="is-info">
-                            <span>HH:mm:ss</span>
-                        </b-radio-button>
+                        <b-tooltip label="Countdown long time format with seconds" position="is-bottom" size="is-small" type="is-info" multilined>
+                          <b-radio-button v-model="currentFormatValue" native-value="HH:mm:ss" size="is-medium" type="is-info">
+                              <span>HH:mm:ss</span>
+                          </b-radio-button>
+                        </b-tooltip>
                       </p>
                       <p class="control">
-                        <b-radio-button v-model="currentFormatValue" native-value="mm:ss" size="is-medium" type="is-info">
-                            <span>mm:ss</span>
-                        </b-radio-button>
+                        <b-tooltip label="Countdown short time format without seconds" position="is-bottom" size="is-small" type="is-info" multilined>
+                          <b-radio-button v-model="currentFormatValue" native-value="mm:ss" size="is-medium" type="is-info">
+                              <span>mm:ss</span>
+                          </b-radio-button>
+                        </b-tooltip>
                       </p>
                     </div>
                   </b-field>
                   <b-field label="Font Size">
-                    <div class="control has-icons-right">
-                      <input type="number" v-model="fontSizeValue" min="1" max="50" placeholder="Font Size" class="input is-medium is-rounded" required>
-                      <span class="icon is-right">vw</span>
-                    </div>
+                    <b-tooltip label="Countdown font size in VW" position="is-bottom" size="is-small" type="is-info" multilined>
+                      <div class="control has-icons-right">
+                        <input type="number" v-model="fontSizeValue" min="1" max="50" placeholder="Font Size" class="input is-medium is-rounded" required>
+                        <span class="icon is-right">vw</span>
+                      </div>
+                    </b-tooltip>
                   </b-field>
                   <b-field label="Visual Notification">
                     <div class="columns">
                       <div class="column">
                         <div class="field">
-                          <b-switch v-model="warningEnabled" size="is-medium" type="is-info">Warning</b-switch>
+                          <b-tooltip label="Orange background after the Warning time" size="is-small" type="is-info" multilined>
+                            <b-switch v-model="warningEnabled" size="is-medium" type="is-info">Warning</b-switch>
+                          </b-tooltip>
                         </div>
                       </div>
                       <div class="column">
                         <div class="field">
-                          <b-switch v-model="pulseEnabled" size="is-medium" type="is-info">Pulse</b-switch>
+                          <b-tooltip label="Countdown pulsing after the Pulse time" size="is-small" type="is-info" multilined>
+                            <b-switch v-model="pulseEnabled" size="is-medium" type="is-info">Pulse</b-switch>
+                          </b-tooltip>
                         </div>
                       </div>
                       <div class="column">
                         <div class="field">
-                          <b-switch v-model="stopwatchEnabled" size="is-medium" type="is-info">Elapsed</b-switch>
+                          <b-tooltip label="Elapsed time in the top-left corner" size="is-small" type="is-info" multilined>
+                            <b-switch v-model="stopwatchEnabled" size="is-medium" type="is-info">Elapsed</b-switch>
+                          </b-tooltip>
                         </div>
                       </div>
                     </div>
@@ -211,7 +223,7 @@ export default {
       this.warningPercentageValue = 10
       this.pulsePercentageValue = 5
       this.countdownChanged()
-      this.currentTabIndex = 1
+      this.applySettings()
     },
     applySettings: function () {
       this.$dialog.confirm({
