@@ -302,7 +302,7 @@ export default {
 </script>
 
 <style scoped>
-.modal-card-body { min-height: 425px; }
+.modal-card { min-height: 567px; }
 .modal-card-foot { justify-content: space-between; }
 input[type=text]::-ms-clear {  display: none; width : 0; height: 0; }
 input[type=text]::-ms-reveal {  display: none; width : 0; height: 0; }
