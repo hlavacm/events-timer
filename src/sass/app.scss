@@ -28,6 +28,11 @@ body {
     margin-right: 0.5rem;
 }
 
+.hero-head svg.font-size {
+    margin: 0;
+    padding: 0;
+}
+
 .hero-head svg.is-light path {
     fill: $white-bis;
 }

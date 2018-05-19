@@ -12,6 +12,11 @@
         </div>
       </div>
       <div id="header-navbar-menu" class="navbar-menu">
+        <div class="navbar-start">
+          <div class="navbar-item">
+            <fontSizer></fontSizer>
+          </div>
+        </div>
         <div class="navbar-end">
           <div class="navbar-item navbar-item-control">
             <div class="field">
@@ -63,6 +68,7 @@
 
 <script>
 import Stopwatch from './Stopwatch'
+import FontSizer from './FontSizer'
 import ControlButton from './ControlButton'
 import SettingsPopup from './SettingsPopup'
 import CreditsPopup from './CreditsPopup'
@@ -71,6 +77,7 @@ export default {
   name: 'control-panel',
   components: {
     Stopwatch,
+    FontSizer,
     ControlButton,
     SettingsPopup,
     CreditsPopup

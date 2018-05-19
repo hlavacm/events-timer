@@ -26,7 +26,7 @@
             <li><a href="https://buefy.github.io/" title="Lightweight UI components for Vue.js based on Bulma" target="_blank">Buefy</a></li>
             <li><a href="https://momentjs.com/" title="Parse, validate, manipulate, and display dates and times in JavaScript." target="_blank">Moment.js</a></li>
             <li><a href="https://www.iconfinder.com/iconsets/ionicons" title="Free SVG Ionicons" target="_blank">Ionicons</a></li>
-            <li><a href="https://pages.github.com" title="Websites for you and your projects" target="_blank">GitHub Pages</a></li>
+            <li><a href="https://pages.github.com" title="Websites for you and your projects" target="_blank">GitHub Pages</a> (<a href="https://github.com/hlavacm/events-timer" target="_blank">repo</a>)</li>
           </ul>
         </div>
       </section>

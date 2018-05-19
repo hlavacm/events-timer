@@ -87,16 +87,27 @@
                     </div>
                   </b-field>
                   <b-field label="Font Size">
-                    <b-tooltip label="Countdown font size in VW" position="is-bottom" size="is-small" type="is-info" multilined>
-                      <div class="control has-icons-right">
-                        <input type="number" v-model="fontSizeValue" min="1" max="50" placeholder="Font Size" class="input is-medium is-rounded" required>
-                        <span class="icon is-right">vw</span>
+                    <div class="columns">
+                      <div class="column is-8">
+                        <b-tooltip label="Countdown font size in VW" position="is-bottom" size="is-small" type="is-info" multilined>
+                          <div class="control has-icons-right">
+                            <input type="number" v-model="fontSizeValue" min="1" max="50" placeholder="Font Size" class="input is-medium is-rounded" required>
+                            <span class="icon is-right">vw</span>
+                          </div>
+                        </b-tooltip>
                       </div>
-                    </b-tooltip>
+                      <div class="column is-one-quarter">
+                        <div class="field is-4">
+                          <b-tooltip label="Font Size +/- buttons in the top-left corner" position="is-bottom" size="is-small" type="is-info" multilined>
+                            <b-switch v-model="fontSizerEnabled" size="is-medium" type="is-info">Sizer</b-switch>
+                          </b-tooltip>
+                        </div>
+                      </div>
+                    </div>
                   </b-field>
                   <b-field label="Visual Notification">
                     <div class="columns">
-                      <div class="column">
+                      <div class="column is-4">
                         <div class="field">
                           <b-tooltip label="Orange background after the Warning time" size="is-small" type="is-info" multilined>
                             <b-switch v-model="warningEnabled" size="is-medium" type="is-info">Warning</b-switch>
@@ -104,13 +115,13 @@
                         </div>
                       </div>
                       <div class="column">
-                        <div class="field">
+                        <div class="field is-4">
                           <b-tooltip label="Countdown pulsing after the Pulse time" size="is-small" type="is-info" multilined>
                             <b-switch v-model="pulseEnabled" size="is-medium" type="is-info">Pulse</b-switch>
                           </b-tooltip>
                         </div>
                       </div>
-                      <div class="column">
+                      <div class="column is-4">
                         <div class="field">
                           <b-tooltip label="Elapsed time in the top-left corner" size="is-small" type="is-info" multilined>
                             <b-switch v-model="stopwatchEnabled" size="is-medium" type="is-info">Elapsed</b-switch>
@@ -150,7 +161,8 @@ export default {
       pulsePercentage: null,
       pulseEnabled: this.$store.state.pulseEnabled,
       currentFormat: this.$store.state.currentFormat,
-      fontSize: this.$store.state.fontSize
+      fontSize: this.$store.state.fontSize,
+      fontSizerEnabled: this.$store.state.fontSizerEnabled
     }
   },
   computed: {
@@ -180,7 +192,7 @@ export default {
     },
     fontSizeValue: {
       get: function () { return this.normalizeNumberValue(this.fontSize, 1, 50) },
-      set: function (value) { this.fontSize = this.normalizeNumberValue(value, 1, 50) }
+      set: function (value) { this.fontSize = this.normalizeNumberValue(parseInt(value), 1, 50) }
     }
   },
   mounted: function () {
@@ -242,7 +254,8 @@ export default {
             pulseSeconds: this.getTimeSeconds(this.pulseTimeValue),
             pulseEnabled: this.pulseEnabled,
             currentFormat: this.currentFormatValue,
-            fontSize: this.fontSizeValue
+            fontSize: this.fontSizeValue,
+            fontSizerEnabled: this.fontSizerEnabled
           }
           for (var key in state) {
             localStorage.setItem(key, btoa(state[key]))
@@ -280,6 +293,9 @@ export default {
         return moment.utc(maxSeconds * 1000).format(LONG_TIME_FORMAT)
       }
       return time
+    },
+    zoomed: function () {
+      this.fontSize = this.$store.state.fontSize
     }
   }
 }

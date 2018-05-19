@@ -17,7 +17,8 @@ export const store = new Vuex.Store({
     pulseSeconds: tryInitializeValue('pulseSeconds', 90, (value) => { return parseInt(value) }),
     pulseEnabled: tryInitializeValue('pulseEnabled', true, (value) => { return value === 'true' }),
     currentFormat: tryInitializeValue('currentFormat', LONG_TIME_FORMAT),
-    fontSize: tryInitializeValue('fontSize', DEFAULT_FONT_SIZE, (value) => { return parseInt(value) })
+    fontSize: tryInitializeValue('fontSize', DEFAULT_FONT_SIZE, (value) => { return parseInt(value) }),
+    fontSizerEnabled: tryInitializeValue('fontSizerEnabled', true, (value) => { return value === 'true' })
   },
   mutations: {
     increment (state) {
@@ -40,6 +41,13 @@ export const store = new Vuex.Store({
       state.pulseEnabled = settings.pulseEnabled
       state.currentFormat = settings.currentFormat
       state.fontSize = settings.fontSize
+      state.fontSizerEnabled = settings.fontSizerEnabled
+    },
+    zoomIn (state) {
+      state.fontSize = state.fontSize + 1
+    },
+    zoomOut (state) {
+      state.fontSize = state.fontSize - 1
     }
   },
   getters: {
