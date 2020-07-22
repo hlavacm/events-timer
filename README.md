@@ -10,8 +10,7 @@ The application's main target group are speakers at events, conferences, etc.
 
 See at: 
 
-- **http://events-timer.eu**
-- *https://hlavacm.github.io/events-timer/*
+- **https://hlavacm.github.io/events-timer/**
 
 ## Local Setup
 
