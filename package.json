@@ -13,7 +13,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "buefy": "^0.6.5",
+    "buefy": "^0.7.2",
     "bulma": "^0.7.1",
     "moment": "^2.22.1",
     "node-sass": "^4.10.0",
