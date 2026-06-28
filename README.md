@@ -11,7 +11,7 @@ A fullscreen countdown for speakers at talks, meetups, and conferences. Color-co
 
 <p align="center">
   <a href="https://hlavacm.github.io/events-timer/">
-    <img src="https://hlavacm.github.io/events-timer/static/screenshot.png" alt="Events Timer screenshot" width="720">
+    <img src="public/static/screenshot.png" alt="Events Timer screenshot" width="720">
   </a>
 </p>
 
