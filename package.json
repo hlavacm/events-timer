@@ -1,6 +1,6 @@
 {
   "name": "events-timer",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "A simple countdown application for speakers at events, conferences, etc.",
   "author": "Martin Hlaváč <hlavacm@hotmail.com>",
   "private": true,
@@ -15,7 +15,8 @@
     "test:ci": "npm run typecheck && npm run test:coverage && npm run test:e2e",
     "test:unit": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "screenshot": "npm run build && node scripts/capture-screenshot.mjs"
   },
   "dependencies": {
     "lucide-vue-next": "^0.525.0",
@@ -42,6 +43,6 @@
     "vue-tsc": "^2.2.10"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   }
 }

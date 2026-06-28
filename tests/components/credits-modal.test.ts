@@ -8,7 +8,7 @@ describe('CreditsModal', () => {
       props: { open: true }
     })
 
-    expect(document.body.textContent).toContain('Credits v3.0')
+    expect(document.body.textContent).toContain('Credits 3.1.0')
     expect(document.body.textContent).toContain('Vue.js')
 
     const okButton = [...document.body.querySelectorAll('button')].find(

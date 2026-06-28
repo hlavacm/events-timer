@@ -10,7 +10,7 @@ function copyDeployFiles (): { name: string; closeBundle: () => void } {
     closeBundle () {
       const root = resolve(__dirname)
       for (const file of ['CNAME', '404.html']) {
-        copyFileSync(resolve(root, file), resolve(root, 'docs', file))
+        copyFileSync(resolve(root, file), resolve(root, 'dist', file))
       }
     }
   }
@@ -26,7 +26,7 @@ export default defineConfig({
   base: './',
   publicDir: 'public',
   build: {
-    outDir: 'docs',
+    outDir: 'dist',
     emptyOutDir: true
   },
   test: {

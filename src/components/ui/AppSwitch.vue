@@ -11,14 +11,14 @@ defineEmits<{
 </script>
 
 <template>
-  <label class="inline-flex items-center gap-2 text-sm font-medium text-slate-700">
+  <label class="inline-flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300">
     <button
       type="button"
       role="switch"
       :aria-checked="modelValue"
       :disabled="disabled"
       class="relative h-6 w-11 rounded-full transition disabled:opacity-50"
-      :class="modelValue ? 'bg-sky-600' : 'bg-slate-300'"
+      :class="modelValue ? 'bg-sky-600' : 'bg-slate-300 dark:bg-slate-600'"
       @click="$emit('update:modelValue', !modelValue)"
     >
       <span

@@ -72,14 +72,14 @@ describe('App', () => {
 
     await wrapper.get('[data-testid="credits-button"]').trigger('click')
     await flushPromises()
-    expect(document.body.textContent).toContain('Credits v3.0')
+    expect(document.body.textContent).toContain('Credits 3.1.0')
 
     const okButton = [...document.body.querySelectorAll('button')].find(
       (button) => button.textContent === 'OK'
     )
     okButton?.click()
     await flushPromises()
-    expect(document.body.textContent).not.toContain('Credits v3.0')
+    expect(document.body.textContent).not.toContain('Credits 3.1.0')
 
     wrapper.unmount()
   })

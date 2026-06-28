@@ -68,6 +68,16 @@ test.describe('Events Timer', () => {
     await expect(page.getByTestId('countdown-display')).toHaveText('01:00:00')
   })
 
+  test('settings modal uses dark surface in dark color scheme', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'dark' })
+    await page.goto('/')
+    await page.getByTestId('settings-button').click()
+    const dialog = page.locator('[role="dialog"]')
+    await expect(dialog).toBeVisible()
+    const bg = await dialog.evaluate((el) => getComputedStyle(el).backgroundColor)
+    expect(bg).not.toBe('rgb(255, 255, 255)')
+  })
+
   test('font size buttons respect limits', async ({ page }) => {
     await page.goto('/')
     const initialFontSize = await page.getByTestId('countdown-display').evaluate((element) =>

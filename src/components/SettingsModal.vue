@@ -163,8 +163,8 @@ async function applySettings () {
   <AppModal v-model:open="open" title="Settings" data-testid="settings-modal">
     <AppTabs v-model="currentTabIndex" :tabs="tabs">
       <template #tab-0>
-        <p class="mb-4 text-center text-sm text-slate-600">
-          Try use the one of common times:
+        <p class="mb-4 text-center text-sm text-slate-600 dark:text-slate-400">
+          Try one of the common durations:
         </p>
         <div class="flex flex-wrap justify-center gap-2">
           <AppButton
@@ -181,7 +181,7 @@ async function applySettings () {
 
       <template #tab-1>
         <div class="space-y-4">
-          <label class="block text-sm font-semibold text-slate-700">
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">
             Countdown Time
             <TimeInput
               v-model="countdownTime"
@@ -191,12 +191,12 @@ async function applySettings () {
               step="300"
               @change="countdownChanged"
             />
-            <span class="mt-1 block text-xs font-normal text-slate-500">
+            <span class="mt-1 block text-xs font-normal text-slate-500 dark:text-slate-400">
               Min. 00:01:00 and max. 00:59:59 or 23:59:59 by the current format
             </span>
           </label>
 
-          <label class="block text-sm font-semibold text-slate-700">
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">
             Warning Time (of the Countdown)
             <div class="mt-1 grid gap-2 sm:grid-cols-2">
               <TimeInput
@@ -211,12 +211,12 @@ async function applySettings () {
                   type="number"
                   min="0"
                   max="100"
-                  class="w-full rounded-md border border-slate-300 py-2 pr-8 pl-3"
+                  class="w-full rounded-md border border-slate-300 bg-white py-2 pr-8 pl-3 text-slate-900 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
                   :disabled="!warningEnabled"
                   @change="warningPercentageChanged"
                 >
                 <span
-                  class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-sm text-slate-500"
+                  class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-sm text-slate-500 dark:text-slate-400"
                   aria-hidden="true"
                 >
                   %
@@ -225,7 +225,7 @@ async function applySettings () {
             </div>
           </label>
 
-          <label class="block text-sm font-semibold text-slate-700">
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300">
             Pulse Time (of the Countdown)
             <div class="mt-1 grid gap-2 sm:grid-cols-2">
               <TimeInput
@@ -240,12 +240,12 @@ async function applySettings () {
                   type="number"
                   min="0"
                   max="100"
-                  class="w-full rounded-md border border-slate-300 py-2 pr-8 pl-3"
+                  class="w-full rounded-md border border-slate-300 bg-white py-2 pr-8 pl-3 text-slate-900 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
                   :disabled="!pulseEnabled"
                   @change="pulsePercentageChanged"
                 >
                 <span
-                  class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-sm text-slate-500"
+                  class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-sm text-slate-500 dark:text-slate-400"
                   aria-hidden="true"
                 >
                   %
@@ -259,7 +259,7 @@ async function applySettings () {
       <template #tab-2>
         <div class="space-y-4">
           <div>
-            <p class="mb-2 text-sm font-semibold text-slate-700">Time Format</p>
+            <p class="mb-2 text-sm font-semibold text-slate-700 dark:text-slate-300">Time Format</p>
             <div class="flex flex-wrap gap-2">
               <AppTooltip text="Countdown long time format with seconds">
                 <AppButton
@@ -281,7 +281,7 @@ async function applySettings () {
           </div>
 
           <div>
-            <p class="mb-2 text-sm font-semibold text-slate-700">Font Size</p>
+            <p class="mb-2 text-sm font-semibold text-slate-700 dark:text-slate-300">Font Size</p>
             <div class="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-center">
               <AppTooltip text="Countdown font size in VW" placement="top-start" class="w-full">
                 <div class="relative w-full">
@@ -290,10 +290,10 @@ async function applySettings () {
                     type="number"
                     min="1"
                     max="50"
-                    class="w-full rounded-md border border-slate-300 py-2 pr-10 pl-3"
+                    class="w-full rounded-md border border-slate-300 bg-white py-2 pr-10 pl-3 text-slate-900 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
                   >
                   <span
-                    class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-sm text-slate-500"
+                    class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-sm text-slate-500 dark:text-slate-400"
                     aria-hidden="true"
                   >
                     vw
@@ -311,7 +311,7 @@ async function applySettings () {
           </div>
 
           <div>
-            <p class="mb-2 text-sm font-semibold text-slate-700">Visual Notification</p>
+            <p class="mb-2 text-sm font-semibold text-slate-700 dark:text-slate-300">Visual Notification</p>
             <div class="flex flex-wrap gap-4">
               <AppTooltip text="Orange background after the Warning time" placement="top-start">
                 <AppSwitch v-model="warningEnabled" label="Warning" />

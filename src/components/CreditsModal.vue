@@ -6,8 +6,8 @@ const open = defineModel<boolean>('open', { required: true })
 </script>
 
 <template>
-  <AppModal v-model:open="open" title="Credits v3.0" data-testid="credits-modal">
-    <div class="space-y-4 text-sm leading-6 text-slate-700">
+  <AppModal v-model:open="open" title="Credits 3.1.0" data-testid="credits-modal">
+    <div class="space-y-4 text-sm leading-6 text-slate-700 dark:text-slate-300">
       <p>
         This is a simple countdown application with two time dependent notifications.
       </p>
@@ -16,12 +16,12 @@ const open = defineModel<boolean>('open', { required: true })
       </p>
       <p>
         Copyright &copy;
-        <a href="http://hlavacm.net" target="_blank" rel="noreferrer" class="text-sky-700 underline">
+        <a href="http://hlavacm.net" target="_blank" rel="noreferrer" class="text-sky-700 underline dark:text-sky-400">
           Martin Hlaváč
         </a>
         2017-2026
       </p>
-      <div class="text-xs text-slate-500">
+      <div class="text-xs text-slate-500 dark:text-slate-400">
         <p>Used:</p>
         <ul class="mt-2 list-disc space-y-1 pl-5">
           <li><a href="https://vuejs.org/" target="_blank" rel="noreferrer" class="underline">Vue.js</a></li>

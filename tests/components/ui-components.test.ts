@@ -74,6 +74,8 @@ describe('ui components', () => {
       }
     })
 
+    const dialog = document.body.querySelector('[role="dialog"]')
+    expect(dialog?.className).toContain('dark:bg-slate-900')
     expect(document.body.textContent).toContain('Settings')
     document.body.querySelector('[aria-label="Close"]')?.dispatchEvent(
       new MouseEvent('click', { bubbles: true })

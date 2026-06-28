@@ -2,11 +2,11 @@
 
 ## Project Structure & Module Organization
 
-This is a Vue 3 single-page app built with Vite. Application code lives in `src/`: `main.ts` boots the app, `App.vue` is the root component, reusable UI pieces are in `src/components/`, shared helpers are in `src/utils/`, Pinia stores are in `src/stores/`, composables are in `src/composables/`, types are in `src/types/`, and global styles are in `src/styles/main.css`. Static source assets belong in `public/`. The `docs/` directory contains the generated production build used for publishing; do not edit it by hand unless you are intentionally updating deployed artifacts.
+This is a Vue 3 single-page app built with Vite. Application code lives in `src/`: `main.ts` boots the app, `App.vue` is the root component, reusable UI pieces are in `src/components/`, shared helpers are in `src/utils/`, Pinia stores are in `src/stores/`, composables are in `src/composables/`, types are in `src/types/`, and global styles are in `src/styles/main.css`. Static source assets belong in `public/`. Production builds are generated into `dist/` and deployed by GitHub Actions; do not commit generated build output.
 
 ## Build, Test, and Development Commands
 
-Run `npm install` to install dependencies from `package-lock.json`. Use `npm run dev` to launch the hot-reload dev server. Use `npm run build` to create the production bundle in `docs/`. Run `npm run lint` before committing. Run `npm run typecheck` for TypeScript validation. Run `npm run test:unit` for Vitest unit tests. Run `npm run test:coverage` for unit tests with coverage thresholds. Run `npm run test:e2e` for Playwright end-to-end tests.
+Run `npm install` to install dependencies from `package-lock.json`. Use `npm run dev` to launch the hot-reload dev server. Use `npm run build` to create the production bundle in `dist/`. Run `npm run lint` before committing. Run `npm run typecheck` for TypeScript validation. Run `npm run test:unit` for Vitest unit tests. Run `npm run test:coverage` for unit tests with coverage thresholds. Run `npm run test:e2e` for Playwright end-to-end tests.
 
 ## Coding Style & Naming Conventions
 
@@ -18,7 +18,7 @@ Unit tests live in `tests/unit/`. End-to-end tests live in `e2e/`. Add or update
 
 ## Commit & Pull Request Guidelines
 
-Keep commit messages concise and focused on one change. Pull requests should include a clear description, testing performed (`npm run lint`, `npm run typecheck`, `npm run test:unit`, `npm run test:e2e`, or build output), linked issues when available, and screenshots or screen recordings for visual changes. Mention when `docs/` was rebuilt for deployment.
+Keep commit messages concise and focused on one change. Pull requests should include a clear description, testing performed (`npm run lint`, `npm run typecheck`, `npm run test:unit`, `npm run test:e2e`, or build output), linked issues when available, and screenshots or screen recordings for visual changes. Mention when GitHub Pages workflow or deployment settings change.
 
 ## Security & Configuration Tips
 

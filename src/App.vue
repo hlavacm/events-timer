@@ -23,7 +23,7 @@ const visualClasses = computed<Record<VisualState, string>>(() => ({
   running: 'bg-emerald-700 text-white',
   warning: 'bg-amber-500 text-black',
   danger: 'bg-red-700 text-white',
-  paused: 'bg-slate-100 text-slate-900'
+  paused: 'bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-white'
 }))
 
 useKeyboard(
