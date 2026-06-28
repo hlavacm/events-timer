@@ -1,37 +1,50 @@
 # Events Timer
 
-:clock1: :clock2: :clock3: :clock4: :clock5: :clock6: :clock7: :clock8: :clock9: :clock10: :clock11: :clock12:
-
-This is a simple countdown application with two time dependent notifications.
-
-The application's main target group are speakers at events, conferences, etc.
+A simple countdown application with two time dependent notifications for speakers at events, conferences, and similar talks.
 
 ## Online Version
 
-See at: 
-
 - **https://hlavacm.github.io/events-timer/**
+
+## Requirements
+
+- Node.js 20 or newer
 
 ## Local Setup
 
-``` bash
-# install dependencies
+```bash
 npm install
-
-# serve with hot reload at localhost:8080
+npx playwright install
 npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+The dev server runs on `http://localhost:5173`.
+
+## Commands
+
+```bash
+npm run dev         # local development with hot reload
+npm run build       # production build into docs/
+npm run preview     # preview the production build locally
+npm run lint        # ESLint
+npm run typecheck   # TypeScript check
+npm test            # typecheck, unit tests, and e2e tests
+npm run test:ci     # typecheck, coverage, and e2e tests
+npm run test:unit   # Vitest unit tests
+npm run test:coverage  # unit tests with coverage report
+npm run test:e2e    # Playwright end-to-end tests
+```
+
+## Stack
+
+- Vue 3 + TypeScript
+- Vite
+- Pinia
+- Tailwind CSS
+- Vitest
+- Playwright
+- lucide-vue-next
+
+## Deployment
+
+Production output is generated into `docs/` for GitHub Pages deployment. Do not edit files in `docs/` manually; rebuild with `npm run build`.

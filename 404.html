@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +11,6 @@
   <meta property="og:title" content="Events Timer - Countdown">
   <meta property="og:image" content="static/screenshot.png">
   <meta property="og:description" content="This is a simple countdown application with two time dependent notifications. The application's main target group are speakers at events, conferences, etc.">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
   <link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
@@ -21,24 +20,82 @@
   <meta name="theme-color" content="#ffffff">
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-71841368-4"></script>
   <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-71841368-4");</script>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      background: #0f172a;
+    }
+
+    main {
+      width: min(100%, 36rem);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(4rem, 18vw, 9rem);
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    p {
+      margin: 1rem 0 0;
+      color: #cbd5e1;
+      font-size: clamp(1.125rem, 4vw, 1.5rem);
+      line-height: 1.5;
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.75rem;
+      margin-top: 2rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid #94a3b8;
+      border-radius: 0.5rem;
+      color: #f8fafc;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    a:focus-visible,
+    a:hover {
+      background: #f8fafc;
+      color: #0f172a;
+      outline: none;
+    }
+  </style>
 </head>
 <body>
-  <section class="hero is-primary is-fullheight">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <h1 class="title">404</h1>
-        <h2 class="subtitle">Oops there is no page here.</h2>
-      </div>
-    </div>
-  </section>
+  <main>
+    <h1>404</h1>
+    <p>Oops, there is no page here.</p>
+    <a href="/">Back to Events Timer</a>
+  </main>
   <script type="application/ld+json">
     {
-        "@context": "http://schema.org",
-        "@type": "WebSite",
-        "name": "Events Timer - Countdown"
-        "description": "This is a simple countdown application with two time dependent notifications. The application's main target group are speakers at events, conferences, etc."
-        "url": "http://events-timer.eu/"
-        "image": "http://events-timer.eustatic/screenshot.png"
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Events Timer - Countdown",
+      "description": "This is a simple countdown application with two time dependent notifications. The application's main target group are speakers at events, conferences, etc.",
+      "url": "https://hlavacm.github.io/events-timer/",
+      "image": "https://hlavacm.github.io/events-timer/static/screenshot.png"
     }
   </script>
 </body>

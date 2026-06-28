@@ -1,74 +1,63 @@
-<template>
-  <div id="app">
-      <section class="hero is-fullheight is-bold" v-bind:class="colorClass">
-        <div class="hero-head">
-          <div class="container is-fluid">
-            <control-panel ref="controlPanel" @colored="changeColorClass" @pulsed="changePulse"></control-panel>
-          </div>
-        </div>
-        <div id="app-content" class="hero-body">
-          <div class="container is-fluid has-text-centered">
-            <countdown ref="countdown"></countdown>
-          </div>
-        </div>
-      </section>
-      <settings-popup ref="settingsPopup"></settings-popup>
-      <credits-popup ref="creditsPopup"></credits-popup>
-  </div>
-</template>
+<script setup lang="ts">
+import { computed, ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import ConfirmDialog from '@/components/ConfirmDialog.vue'
+import ControlPanel from '@/components/ControlPanel.vue'
+import Countdown from '@/components/Countdown.vue'
+import CreditsModal from '@/components/CreditsModal.vue'
+import SettingsModal from '@/components/SettingsModal.vue'
+import { useConfirm } from '@/composables/useConfirm'
+import { useKeyboard } from '@/composables/useKeyboard'
+import { useTimerStore } from '@/stores/timer'
+import type { VisualState } from '@/types/timer'
 
-<script>
-import ControlPanel from './components/ControlPanel'
-import Countdown from './components/Countdown'
-import SettingsPopup from './components/SettingsPopup'
-import CreditsPopup from './components/CreditsPopup'
+const timerStore = useTimerStore()
+const { visualState } = storeToRefs(timerStore)
 
-export default {
-  name: 'App',
-  components: {
-    ControlPanel,
-    Countdown,
-    SettingsPopup,
-    CreditsPopup
-  },
-  data () {
-    return {
-      colorClass: 'is-dark'
-    }
-  },
-  mounted: function () {
-    window.addEventListener('keyup', this.handleKey)
-    let appContent = document.getElementById('app-content')
-    appContent.onclick = () => {
-      this.toggleState()
-    }
-  },
-  methods: {
-    changeColorClass: function (value) {
-      this.colorClass = value
-    },
-    changePulse: function (value) {
-      this.$refs.countdown.pulsed = value
-    },
-    handleKey: function (event) {
-      if (this.$refs.settingsPopup.isActive || this.$refs.creditsPopup.isActive) {
-        return
-      }
-      if (event.keyCode === 32) { // enter
-        this.toggleState()
-      } else if (event.keyCode === 27) { // esc
-        if (this.$refs.controlPanel.isTicking) {
-          this.$refs.controlPanel.reset()
-        }
-      }
-    },
-    toggleState: function (event) {
-      if (this.$refs.controlPanel.isTicking) {
-        this.$refs.controlPanel.stop()
-      } else {
-        this.$refs.controlPanel.play()
-      }
-    }
-  }
+const settingsOpen = ref(false)
+const creditsOpen = ref(false)
+const { confirmState } = useConfirm()
+
+const visualClasses = computed<Record<VisualState, string>>(() => ({
+  idle: 'bg-slate-900 text-white',
+  running: 'bg-emerald-700 text-white',
+  warning: 'bg-amber-500 text-black',
+  danger: 'bg-red-700 text-white',
+  paused: 'bg-slate-100 text-slate-900'
+}))
+
+useKeyboard(
+  () =>
+    settingsOpen.value ||
+    creditsOpen.value ||
+    confirmState.value !== null
+)
+
+function toggleState () {
+  timerStore.toggle()
 }
 </script>
+
+<template>
+  <div id="app" class="min-h-screen" :class="visualClasses[visualState]">
+    <section class="flex min-h-screen flex-col">
+      <header class="px-4">
+        <ControlPanel
+          @open-settings="settingsOpen = true"
+          @open-credits="creditsOpen = true"
+        />
+      </header>
+      <main
+        id="app-content"
+        class="flex flex-1 cursor-pointer items-center justify-center px-4"
+        @click="toggleState"
+      >
+        <Countdown />
+      </main>
+    </section>
+
+    <SettingsModal v-model:open="settingsOpen" />
+    <CreditsModal v-model:open="creditsOpen" />
+    <ConfirmDialog />
+  </div>
+</template>

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Roboto Condensed', sans-serif;
+}
+
+html {
+  overflow-y: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+@keyframes pulsition {
+  0% { opacity: 1; }
+  40% { opacity: 0; }
+  80% { opacity: 1; }
+}
+
+.pulsar {
+  animation: pulsition 1s infinite;
+}
